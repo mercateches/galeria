@@ -1,0 +1,329 @@
+
+/* =========================================
+   1. RESET BÁSICO
+   ========================================= */
+
+* {
+  /* Elimina márgenes y padding predeterminados */
+  margin: 0;
+  padding: 0;
+
+  /* Incluye padding y border dentro del ancho total */
+  box-sizing: border-box;
+}
+
+/* =========================================
+   2. CONFIGURACIÓN DEL HTML
+   ========================================= */
+
+html {
+  /* Respeta el tamaño de fuente configurado por el usuario */
+  font-size: 100%;
+}
+
+/* =========================================
+   3. ESTILOS BASE DEL BODY
+   ========================================= */
+
+body {
+  /* Utiliza fuentes disponibles en el sistema */
+  font-family: Arial, Helvetica, sans-serif;
+
+  /* 1rem equivale normalmente a 16px */
+  font-size: 1rem;
+
+  /* Mejora la legibilidad del texto */
+  line-height: 1.6;
+
+  /* Color principal del texto */
+  color: hsl(220, 25%, 20%);
+
+  /* Fondo gris muy claro */
+  background-color: hsl(210, 25%, 97%);
+}
+
+/* =========================================
+   4. VARIABLES DE COLOR Y ESPACIADO
+   ========================================= */
+
+:root {
+  /* Color primario: azul */
+  --color-primario: hsl(220, 80%, 50%);
+
+  /* Variación clara: mismo Hue y Saturation,
+     pero mayor Lightness */
+  --color-primario-claro: hsl(220, 80%, 90%);
+
+  /* Variación oscura: mismo Hue y Saturation,
+     pero menor Lightness */
+  --color-primario-oscuro: hsl(220, 80%, 25%);
+
+  /* Colores de texto y fondo */
+  --color-texto: hsl(220, 25%, 20%);
+  --color-texto-secundario: hsl(220, 10%, 45%);
+  --color-fondo: hsl(210, 25%, 97%);
+  --color-superficie: hsl(0, 0%, 100%);
+
+  /* Espaciado reutilizable */
+  --espacio-pequeno: 0.5rem;
+  --espacio-medio: 1rem;
+  --espacio-grande: 2rem;
+
+  /* Bordes y sombras */
+  --radio-borde: 0.75rem;
+  --sombra-tarjeta: 0 4px 12px hsl(220, 30%, 20%, 0.10);
+  --sombra-hover: 0 10px 24px hsl(220, 30%, 20%, 0.18);
+}
+
+/*
+ * INVESTIGACIÓN: ¿Qué es HSL y por qué usarlo?
+ *
+ * 1. ¿Qué significa cada valor en hsl()?
+ *
+ * H (Hue): tono o color, representado en grados
+ * de 0 a 360. Por ejemplo, 220 corresponde a un azul.
+ *
+ * S (Saturation): saturación del color, expresada
+ * en porcentaje. 0% es gris y 100% es la saturación máxima.
+ *
+ * L (Lightness): luminosidad, expresada en porcentaje.
+ * 0% es negro, 50% es el tono medio y 100% es blanco.
+ *
+ * 2. ¿Por qué HSL puede ser más útil que HEX o RGB?
+ *
+ * - Permite crear variaciones claras y oscuras de un
+ *   color modificando principalmente la luminosidad.
+ * - Facilita mantener una paleta de colores coherente
+ *   y ajustar la saturación de forma intuitiva.
+ *
+ * 3. Ejemplo práctico:
+ *
+ * - En una galería web puedo usar el mismo tono azul
+ *   para títulos, botones y enlaces, con variaciones
+ *   claras y oscuras para fondos y estados hover.
+ */
+
+/* =========================================
+   5. HEADER: ENCABEZADO
+   ========================================= */
+
+.header {
+  /* Fondo azul primario */
+  background-color: var(--color-primario);
+
+  /* Espaciado interior */
+  padding: 2rem 1rem;
+
+  /* Sombra sutil debajo del encabezado */
+  box-shadow: 0 2px 8px hsl(220, 30%, 20%, 0.12);
+}
+
+.header-contenido {
+  /* Evita que el contenido se extienda demasiado */
+  max-width: 75rem;
+
+  /* Centra el bloque horizontalmente */
+  margin: 0 auto;
+
+  /* Espaciado interior */
+  padding: 0 1rem;
+
+  /* Alinea el texto al centro */
+  text-align: center;
+
+  /* Flexbox organiza los elementos en columna */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titulo-principal {
+  /* Tamaño destacado del título */
+  font-size: 2.75rem;
+
+  /* Espacio inferior */
+  margin-bottom: 0.5rem;
+
+  /* Texto blanco para contrastar con el azul */
+  color: var(--color-superficie);
+}
+
+.descripcion {
+  font-size: 1.125rem;
+
+  /* Azul muy claro para diferenciarlo del título */
+  color: var(--color-primario-claro);
+}
+
+/* =========================================
+   6. CONTENEDOR PRINCIPAL
+   ========================================= */
+
+.contenedor {
+  /* Limita el ancho máximo de la galería */
+  max-width: 75rem;
+
+  /* Centra el contenedor */
+  margin: 0 auto;
+
+  /* Espaciado alrededor del contenido */
+  padding: 2rem;
+}
+
+/* =========================================
+   7. GALERÍA CON CSS GRID
+   ========================================= */
+
+.galeria {
+  /* Activa CSS Grid */
+  display: grid;
+
+  /* Crea tres columnas de igual tamaño */
+  grid-template-columns: repeat(3, 1fr);
+
+  /* Espacio horizontal y vertical entre tarjetas */
+  gap: 1.5rem;
+}
+
+/* =========================================
+   8. TARJETAS DE FOTOGRAFÍAS
+   ========================================= */
+
+.foto-tarjeta {
+  /* Fondo blanco para cada tarjeta */
+  background-color: var(--color-superficie);
+
+  /* Esquinas redondeadas */
+  border-radius: var(--radio-borde);
+
+  /* Sombra inicial */
+  box-shadow: var(--sombra-tarjeta);
+
+  /* Recorta la imagen en las esquinas redondeadas */
+  overflow: hidden;
+
+  /* Transición suave al interactuar */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.foto-tarjeta img {
+  /* La imagen ocupa todo el ancho disponible */
+  width: 100%;
+
+  /* Altura uniforme para todas las imágenes */
+  height: 250px;
+
+  /* Recorta la imagen sin deformarla */
+  object-fit: cover;
+
+  /* Elimina el espacio inferior de las imágenes inline */
+  display: block;
+}
+
+.foto-info {
+  /* Espaciado interior de la tarjeta */
+  padding: 1rem;
+}
+
+.foto-titulo {
+  /* Tamaño del título de cada fotografía */
+  font-size: 1.25rem;
+
+  /* Separación del texto descriptivo */
+  margin-bottom: 0.5rem;
+
+  /* Color azul oscuro */
+  color: var(--color-primario-oscuro);
+}
+
+.foto-descripcion {
+  /* Tamaño cómodo para leer */
+  font-size: 0.95rem;
+
+  /* Color secundario */
+  color: var(--color-texto-secundario);
+
+  /* Evita márgenes adicionales */
+  margin: 0;
+}
+
+/* =========================================
+   9. EFECTO HOVER
+   ========================================= */
+
+.foto-tarjeta:hover {
+  /* Eleva ligeramente la tarjeta */
+  transform: translateY(-4px);
+
+  /* Intensifica la sombra */
+  box-shadow: var(--sombra-hover);
+}
+
+/* =========================================
+   10. FOOTER: PIE DE PÁGINA
+   ========================================= */
+
+.footer {
+  /* Fondo azul oscuro */
+  background-color: var(--color-primario-oscuro);
+
+  /* Texto claro */
+  color: var(--color-superficie);
+
+  /* Centra el contenido */
+  text-align: center;
+
+  /* Espaciado interior */
+  padding: 1.5rem 1rem;
+
+  /* Separa el pie de la galería */
+  margin-top: 2rem;
+}
+
+/* =========================================
+   11. TABLETS: HASTA 768px
+   ========================================= */
+
+@media (max-width: 768px) {
+  .galeria {
+    /* Reduce la galería a dos columnas */
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .titulo-principal {
+    /* Reduce el tamaño del título */
+    font-size: 2.25rem;
+  }
+
+  .contenedor {
+    /* Reduce el espaciado lateral */
+    padding: 1.5rem;
+  }
+}
+
+/* =========================================
+   12. MÓVILES: HASTA 480px
+   ========================================= */
+
+@media (max-width: 480px) {
+  .galeria {
+    /* Una sola columna en pantallas pequeñas */
+    grid-template-columns: 1fr;
+  }
+
+  .titulo-principal {
+    /* Título más pequeño para móviles */
+    font-size: 1.75rem;
+  }
+
+  .contenedor {
+    /* Menos espacio lateral */
+    padding: 1rem;
+  }
+
+  .foto-tarjeta img {
+    /* Conserva una altura cómoda en móviles */
+    height: 220px;
+  }
+}
